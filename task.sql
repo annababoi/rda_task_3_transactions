@@ -1,13 +1,11 @@
--- Use our database
-USE ShopDB; 
+USE ShopDB;
 
--- Some data should be created outside the transaction (here)
+START TRANSACTION;
+
 INSERT INTO Orders(CustomerID, Date)
 VALUES(1, '2026-11-05');
 SET @order_id = LAST_INSERT_ID();
 
--- Start the transaction 
-START TRANSACTION;
 INSERT INTO OrderItems(OrderID, ProductID, Count)
 VALUES(@order_id, 1, 1);
 UPDATE Products
